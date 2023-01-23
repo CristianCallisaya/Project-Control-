@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\ModalidadController;
+use App\Http\Controllers\EstudianteController;
 use GuzzleHttp\Middleware;
 
 /*
@@ -29,13 +31,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
    
 });
 Route::post('login',[UserController::class, 'login']); 
-
-
-//carreras
-/*
-Route::get('carreras',[CarreraController::class, 'index']);
-Route::post('carreras',[CarreraController::class, 'store']);
-Route::put('carreras/{carrera}',[CarreraController::class, 'update']);
-Route::delete('carreras/{carrera}',[CarreraController::class,'destroy']);
-*/
-Route::resource('carreras',[CarreraController::class]);
+//carreras get,post,update,put
+Route::resource('/carreras', CarreraController::class);
+//modalidades get,post,update,put
+Route::resource('/modalidades', ModalidadController::class); 
+//estudiantes
+Route::resource('/estudiantes', EstudianteController::class);
+Route::get('/getEstudianteSolicitud/{id}',[EstudianteController::class, 'getEstudianteSolicitud'])->name('solicitud-estudiante');

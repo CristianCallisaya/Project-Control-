@@ -11,5 +11,10 @@ class Carrera extends Model
 
     protected $table = 'carreras';
 
-    protected $fillable = [ 'carreraNombre', 'correlativo'];
+    protected $fillable = ['carreraNombre', 'correlativo'];
+
+    public function relacion_estudiante()
+    {
+        return $this->hasMany(Estudiante::class, 'id');
+    }
 }
